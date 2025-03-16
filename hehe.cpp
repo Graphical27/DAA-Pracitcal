@@ -85,7 +85,38 @@ namespace week2{
             cout << "Key not present" << endl;
         } cout << "Number of comparisons: " << cnt << endl;
     }
+    void q2(vector<int> arr) {
+        int cnt = 0;
+        bool found = false;
+        for(int k = arr.size()-1; k >= 2; k--){
+            int i = 0;
+            int j = k-1;
+            while(i < j){
+                cnt++;
+                if(arr[i] + arr[j] == arr[k]) {
+                    cout << i+1 << ", " << j+1 << ", " << k+1 << endl;
+                    found = true;
+                    break;
+                }
+                else if(arr[i] + arr[j] < arr[k]) i++;
+                else j--;
+            }if(found) break;
+        }
+        if(!found) cout << "No sequence found" << endl;
+        cout << "Number of comparisons: " << cnt << endl;
+    }
+    void q3(vector<int> arr, int key) {
+        int cnt = 0;
+        for(int i = 0; i < arr.size() - 1; i++){
+            for(int j = i+1; j < arr.size(); j++){
+                if(abs(arr[i] - arr[j]) == key){
+                    cnt++;
+                }
+            }
+        }cout << "Number of pairs with difference " << key << ": " << cnt << endl;
+    }
 }
+
 int main() {
     vector<int> arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     int key = 3;
@@ -93,6 +124,8 @@ int main() {
     // week1::q2(arr, key);
     // week1::q3(arr, key);
     week2::q1(arr, key);
+    week2::q2(arr);
+    week2::q3(arr, key);
     return 0;
 }
 
