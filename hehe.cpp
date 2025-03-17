@@ -345,7 +345,75 @@ namespace week4{
 // }
 
 namespace week5{
-    
+    void q1(vector<char> v) {
+        unordered_map<char, int> freq;
+        for(char c : v) {
+            freq[c]++;
+        }
+        char maxChar = v[0];
+        int maxCount = 0;
+        for(auto pair : freq) {
+            if(pair.second > maxCount) {
+                maxCount = pair.second;
+                maxChar = pair.first;
+            }
+        }
+        cout << "Character with maximum occurrences: " << maxChar << endl;
+        cout << "Number of occurrences: " << maxCount << endl;
+    }
+    void q2(vector<int> v, int key) {
+        sort(v.begin(), v.end());
+        int left = 0;
+        int right = v.size() - 1;
+        bool found = false;
+        
+        while(left < right) {
+            int sum = v[left] + v[right];
+            if(sum == key) {
+                found = true;
+                cout << "Found two elements " << v[left] << " and " << v[right] 
+                     << " whose sum equals " << key << ln;
+                break;
+            }
+            else if(sum < key) {
+                left++;
+            }
+            else {
+                right--;
+            }
+        }
+        
+        if(!found) {
+            cout << "No two elements found whose sum equals " << key << ln;
+        }
+    }
+    void q3(vector<int> arr1, vector<int> arr2) {
+        int i = 0, j = 0;
+        cout << "Common elements: ";
+        
+        while(i < arr1.size() && j < arr2.size()) {
+            if(arr1[i] == arr2[j]) {
+                cout << arr1[i] << " ";
+                i++;
+                j++;
+            }
+            else if(arr1[i] < arr2[j]) {
+                i++;
+            }
+            else {
+                j++;
+            }
+        }
+        cout << ln;
+    }
 }
 
 
+int main(){
+    vector<char> v = {'a', 'b', 'c', 'a', 'b', 'a', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    week5::q1(v);
+    vector<int> v1 = {1, 2, 3, 4, 5};
+    vector<int> v2 = {3, 4, 5, 6, 7};
+    week5::q2(v1,5);
+    week5::q3(v1,v2);
+}
