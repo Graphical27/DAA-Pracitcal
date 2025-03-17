@@ -260,7 +260,6 @@ namespace week4{
         cout << "Comp" << comp << " Inversion: " << inv << ln;
     }
     int partition(vector<int>& arr, int low, int high, int& comparisons, int& swaps) {
-        // Choose random pivot
         int random = low + rand() % (high - low + 1);
         swap(arr[random], arr[high]);
         swaps++;
@@ -297,7 +296,6 @@ namespace week4{
         }
         
         int comparisons = 0, swaps = 0;
-        srand(time(0)); // Seed random number generator
         
         quickSort(v, 0, v.size()-1, comparisons, swaps);
         
